@@ -1,18 +1,18 @@
 if (document.readyState !== "loading") {
-    initializeCodePosts();
+    initializeCodeComments();
 } else {
     document.addEventListener("DOMContentLoaded", function () {
-      initializeCodePosts();
+      initializeCodeComments();
     });
 }
   
-function initializeCodePosts() {
-    getPosts();
-    console.log("initialize Code Posts");
-    document.getElementById("post-form").addEventListener("submit", onSubmit);
+function initializeCodeComments() {
+    getComments();
+    console.log("initialize Comments");
+    document.getElementById("comment-form").addEventListener("submit", onSubmit);
 }
 
-function getPosts () {
+function getComments () {
     const authToken = localStorage.getItem("auth_token");
     if(!authToken) {
         console.log("No auth token"); 
@@ -30,14 +30,14 @@ function onSubmit(event) {
     const formData = new FormData(event.target);
     formData.append("email", localStorage.getItem("email"));
     console.log(formData);
-    fetch("/api/posts", {
+    fetch("/api/comments/", {
         method: "POST",
         body: formData
     })
         .then((response) => response.json())
         .then((data) => {
             if(data.Success) {
-                window.location.href = "/api/posts";
+                window.location.href = "/api/posts/";
             } else {
                 if(data.message) {
                     document.getElementById("error").innerHTML = data.message;

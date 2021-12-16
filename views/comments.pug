@@ -1,4 +1,46 @@
 extends layout 
 
 block content 
-    h1 Comments 
+    h1 Comments for post #{post["title"]}
+    h2 Post
+    table 
+        tr 
+            th Title
+            th Snippet 
+            th User
+            th Date added
+        tr 
+            td= post["title"] 
+            td= post["body"]
+            td= post["user"]
+            td= post["createdAt"]
+    
+    h2 Comments
+    table 
+        tr
+            th #
+            th Title
+            th Comment 
+            th User
+            th Date added
+        each comment in comments 
+            tr
+                td= index  
+                td= comment["commentFor"] 
+                td= comment["body"]
+                td= comment["user"]
+                td= comment["createdAt"]
+    
+    h3(id="LoginMessage" style={ display:"block"}) Log in to post comments
+    div(id="form" style={ display:"none" })
+        h2 Add new Comments
+        form(action='' id="comment-form" method='POST')
+            label(for='commentFor') Title
+            br
+            input(type="text" id="commentFor" name="commentFor") 
+            label(for='comment-text') CodeSnippet
+            br
+            textarea(id="comment-text" name="body" cols="50" rows="10")
+            input(type="submit" class="btn" value="Comment")
+
+    script(src="/javascripts/comment.js") 
