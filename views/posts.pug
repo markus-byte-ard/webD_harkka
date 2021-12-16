@@ -11,13 +11,15 @@ block content
             th Body 
             th User
             th Date added
+            th Link
         each post, index in posts 
             tr 
                 td= index  
-                td= post["title"] 
+                td= post["title"]
                 td= post["body"]
                 td= post["user"]
                 td= post["createdAt"]
+                td: a(href="/api/posts/"+post["title"]) Link
 
     div(id="form" style={ display:"none" })
         h2 Add new posts

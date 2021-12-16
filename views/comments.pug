@@ -23,7 +23,7 @@ block content
             th Comment 
             th User
             th Date added
-        each comment in comments 
+        each comment, index in comments 
             tr
                 td= index  
                 td= comment["commentFor"] 
