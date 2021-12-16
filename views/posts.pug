@@ -1,0 +1,34 @@
+extends layout 
+
+block content 
+    h1 Posts 
+    div(id="error" class="card-panel")
+    h1 List of CodeSnippets 
+    table 
+        tr 
+            th #
+            th Title
+            th Body 
+            th User
+            th Date added
+        each post, index in posts 
+            tr 
+                td= index  
+                td= post["title"] 
+                td= post["body"]
+                td= post["user"]
+                td= post["createdAt"]
+
+    div(id="form" style={ display:"none" })
+        h2 Add new posts
+        form(action='' id="post-form" method='POST')
+            label(for='title') Title
+            br
+            input(type="text" id="title" name="title") 
+            label(for='post-text') CodeSnippet
+            br
+            textarea(id="post-text" name="post-text" cols="50" rows="10")
+            input(type="submit" class="btn" value="Post")
+    
+    h3(id="LoginMessage" style={ display:"block"}) Log in to post new CodeSnippets
+    script(src="/javascripts/postsList.js") 
