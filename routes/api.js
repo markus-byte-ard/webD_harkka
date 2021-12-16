@@ -50,7 +50,9 @@ router.post('/posts', upload.none(), (req, res, next) => {
 
 router.get("/posts/:title", (req, res, next) => {
   const name = req.params.title;
+  console.log(name);
   Post.findOne( {title: new RegExp(name, "i")}, (err, post) => {
+    console.log(post);
     if(err) return next(err);
     if(post) {
       Comment.find( {commentFor: new RegExp(name, "i")}, (err, comments) => {
@@ -62,7 +64,6 @@ router.get("/posts/:title", (req, res, next) => {
           return res.render("comments", {post, comments})
         }
       });
-      return res.render("comments", {post})
     } else{
       return res.status(404).send("There is no snippet with title " + name);
     }
@@ -74,7 +75,7 @@ router.post('/comments', upload.none(), (req, res, next) => {
     console.log(req.body);
     Post.create(
       {
-        commentFor: req.body.title,
+        commentFor: req.body.commentFor,
         body: req.body.body,
         user: req.body.email
       },
