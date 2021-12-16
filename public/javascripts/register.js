@@ -5,11 +5,13 @@ if (document.readyState !== "loading") {
       initializeCodeRegister();
     });
 }
-  
-  function initializeCodeRegister() {
+
+// Simple .js file for registering new users
+function initializeCodeRegister() {
     document.getElementById("register-form").addEventListener("submit", onSubmit);
 }
 
+// onSubmit sends formdata to routes users.js 
 function onSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -21,6 +23,7 @@ function onSubmit(event) {
         .then((response) => response.json())
         .then((data) => {
             if(data.Success) {
+                // If registeration was succesful sends user to login screen
                 window.location.href = "/login.html";
             } else {
                 if(data.message) {

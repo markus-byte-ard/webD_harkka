@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Simple schema for comments 
+// ideal way would be to reference posts
 let CommentSchema = new Schema ({
     commentFor: {
         type: String,

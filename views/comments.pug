@@ -2,7 +2,10 @@ extends layout
 
 block content 
     h1 Comments for post #{post["title"]}
+    // Error cardpanel for showing errors
+    div(id="error" class="card-panel")
     h2 Post
+    // Table that shows info on the post
     table 
         tr 
             th Title
@@ -16,13 +19,14 @@ block content
             td= post["createdAt"]
     
     h2 Comments
+    // Table that shows all comments on Post
     table 
         tr
             th #
             th Title
             th Comment 
             th User
-            th Date added
+            th Date commented
         each comment, index in comments 
             tr
                 td= index  
@@ -31,11 +35,13 @@ block content
                 td= comment["user"]
                 td= comment["createdAt"]
     
+    // Form and LoginMessage to show depending on if the user is logged in or not
     h3(id="LoginMessage" style={ display:"block"}) Log in to post comments
     div(id="form" style={ display:"none" })
         h2 Add new Comments
         form(action='' id="comment-form" method='POST')
-            label(for='commentFor') Title of commented post
+            // This could have been done better to automatically get the title of the post to the comment. Now title must be entered manually
+            label(for='commentFor') Add comment for post with this title
             br
             input(type="text" id="commentFor" name="commentFor") 
             label(for='comment-text') Comment

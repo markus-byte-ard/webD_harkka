@@ -1,9 +1,12 @@
 extends layout 
 
 block content 
+    // Simple pug file for showing all posts
     h1 Posts 
+    // Error cardpanel for showing errors
     div(id="error" class="card-panel")
     h1 List of CodeSnippets 
+    // Table showing all posts
     table 
         tr 
             th #
@@ -21,6 +24,7 @@ block content
                 td= post["createdAt"]
                 td: a(href="/api/posts/"+post["title"]) Link
 
+    // Form and LoginMessage to show depending on if the user is logged in or not
     div(id="form" style={ display:"none" })
         h2 Add new posts
         form(action='' id="post-form" method='POST')

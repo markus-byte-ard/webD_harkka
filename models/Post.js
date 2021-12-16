@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Simple schema for posts 
+// ideal way would be to reference users
 let PostSchema = new Schema ({
     title: {
         type: String,

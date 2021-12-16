@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-
+// Simple middleware to validate tokens
+// Exactly as is in week 7 course material
 module.exports = function (req, res, next) {
     const authHeader = req.headers["authorization"];
     let token;

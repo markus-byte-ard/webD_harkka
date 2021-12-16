@@ -1,15 +1,16 @@
 if (document.readyState !== "loading") {
     initializeCodeLogin();
-  } else {
+} else {
     document.addEventListener("DOMContentLoaded", function () {
       initializeCodeLogin();
     });
-  }
-  
-  function initializeCodeLogin() {
+}
+// Simple .js file for loggin in
+function initializeCodeLogin() {
     document.getElementById("login-form").addEventListener("submit", onSubmit);
 }
 
+// onSubmit sends formdata to routes users.js 
 function onSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -21,6 +22,7 @@ function onSubmit(event) {
         .then((response) => response.json())
         .then((data) => {
             if(data.token && data.email) {
+                // If authorization is succesful token and email are stored
                 store(data.token, data.email);
                 window.location.href = "/";
             } else {
@@ -33,6 +35,7 @@ function onSubmit(event) {
         }) 
 }
 
+// Functio stores token and email to localStorage
 function store(token, email) {
     localStorage.setItem("auth_token", token);
     localStorage.setItem("email", email);

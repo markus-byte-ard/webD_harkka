@@ -1,7 +1,9 @@
 extends layout 
 
 block content 
+    // Simple pug file for registering
     h1 Register 
+    // Error cardpanel for showing errors
     div(id="error" class="card-panel")
     form(action='' id="register-form" method='POST')
         label(for='email') Email

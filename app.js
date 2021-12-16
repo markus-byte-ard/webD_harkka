@@ -1,3 +1,4 @@
+// .env file with secret key for authorization
 require('dotenv').config();
 
 var createError = require('http-errors');
@@ -7,17 +8,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
 var app = express();
 
-// view engine setup
+// view engine setup I'm using pug
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Setting up database
 const mongoDB = "mongodb://localhost:27017/testdb";
 mongoose.connect(mongoDB);
 mongoose.Promise = Promise;
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Creating routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
